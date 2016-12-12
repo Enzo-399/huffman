@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-
+#include <iostream>
 typedef struct {
     char ch;
     unsigned int weight;
@@ -41,7 +41,7 @@ void Select(HuffmanTree HT, int j, int &s1, int &s2) {
     flag[s2] = 1;
 }
 
-void HuffmanCoding(HuffmanTree &HT, int w[], int s, char *ch)   //****1*****哈夫曼初始化进行对字母编码
+void HuffmanCoding(HuffmanTree &HT, int w[], int s, char *ch)   //****M*****哈夫曼树初始化进行对字母编码
 {
     n = s;
     int i, j, s1, s2, start;
@@ -108,11 +108,11 @@ void HuffmanCoding(HuffmanTree &HT, int w[], int s, char *ch)   //****1*****哈夫
     free(cd);
 }
 
-void Initialization()             //******2用户自定义权值和字符*****
+void Initialization()             //******I用户自定义权值和字符*****
 {
     int n, weight[50];
     char ch[50];
-    printf("请输入权值个数>1:");
+    printf("请输入权值个数>>:");
     scanf("%d", &n);
     for (int i = 0; i < n; i++) {
 
@@ -123,7 +123,7 @@ void Initialization()             //******2用户自定义权值和字符*****
 
 }
 
-void Encoding()                   //*******3编码**********
+void Encoding()                   //*******E编码**********
 {
     char str[50];
     int j;
@@ -132,7 +132,7 @@ void Encoding()                   //*******3编码**********
         return;
     }
     printf("请输入要编码的文本(小写英文字母):\n");
-    gets(str);
+    std::cin >> str;
     printf("编码结果如下:\n");
     int p = strlen(str);
     for (int i = 1; i <= p; i++) {
@@ -146,7 +146,7 @@ void Encoding()                   //*******3编码**********
     printf("\n");
 }
 
-void Decoding()              //*******4译码**********
+void Decoding()              //*******D译码**********
 {
     int i = 1, j, key;
     char str[100];
@@ -176,9 +176,9 @@ void Decoding()              //*******4译码**********
                 continue;
             }
             if (str[i - 1] == '1') {
-                key = HT[key].rchild;
-                i++;
-                continue;
+                    key = HT[key].rchild;
+                    i++;
+                    continue;
             }
 
         }
@@ -190,36 +190,34 @@ void Decoding()              //*******4译码**********
 }
 
 int main() {
-    int num;
-    char *str = (char *) " abcdefghijklmnopqrstuvwxyz";  //
+    char num;
+    char *str = (char *) " abcdefghijklmnopqrstuvwxyz";
     while (1) {
-
         printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
-        printf("     *************赫夫曼编码/译码器  *************\n");
-        printf("     *************1 使用默认初始化   *************\n");
-        printf("     *************2 使用自定义初始化 *************\n");
-        printf("     *************3       编码       *************\n");
-        printf("     *************4       译码       *************\n");
-        printf("     *************5       退出       *************\n");
+        printf("     ************** 赫夫曼编码/译码器 *************\n");
+        printf("     *************M  使用默认初始化   *************\n");
+        printf("     *************I 使用自定义初始化  *************\n");
+        printf("     *************E       编码       *************\n");
+        printf("     *************D       译码       *************\n");
+        printf("     *************C       退出       *************\n");
 
         printf("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
         printf("请输入您要操作的步骤:");
-        scanf("%d", &num);
-        getchar();
+        std::cin >> num;
         switch (num) {
-            case 1 :
+            case 'M':
                 HuffmanCoding(HT, wei, 27, str);
                 break;
-            case 2:
+            case 'I':
                 Initialization();
                 break;
-            case 3 :
+            case 'E' :
                 Encoding();
                 break;
-            case 4 :
+            case 'D' :
                 Decoding();
                 break;
-            case 5 :
+            case 'C' :
                 exit(0);
             default:break;
         }
