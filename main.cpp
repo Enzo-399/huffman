@@ -48,30 +48,29 @@ void HuffmanCoding(HuffmanTree &HT, int w[], int s, char *ch)   //****M*****哈夫
     char *cd;
     unsigned int c, f;
     for (i = 0; i < s * 2; i++) {
-        flag[i] = 0;          //每个对应节点标记为0 选择最小节点时 被选中标记为1
+        flag[i] = 0;                                        //每个对应节点标记为0 选择最小节点时 被选中标记为1
     }
     if (n <= 1) return;
-    m = 2 * n - 1;                             //n个子叶 2*n-1个节点
-    HT = (HuffmanTree) malloc((m + 1) * sizeof(HTNode));//0号单元未用
-    for (i = 1; i <= n; i++)        //哈夫曼树初始化
+    m = 2 * n - 1;                                          //n个叶子 2*n-1个节点
+    HT = (HuffmanTree) malloc((m + 1) * sizeof(HTNode));    //0号单元未用
+    for (i = 1; i <= n; i++)                                //哈夫曼树初始化
     {
-        HT[i].weight = (unsigned int) w[i - 1];    //w[]对应的权值依次赋给HT每一个叶子节点
-        HT[i].ch = ch[i - 1];       //ch[]对应的字母依次赋给每一个叶子节点
+        HT[i].weight = (unsigned int) w[i - 1];             //w[]对应的权值依次赋给HT每一个叶子节点
+        HT[i].ch = ch[i - 1];                               //ch[]对应的字母依次赋给每一个叶子节点
         HT[i].parent = 0;
         HT[i].lchild = 0;
         HT[i].rchild = 0;
     }
     for (; i <= m; i++) {
-        HT[i].weight = 0;
-        HT[i].parent = 0;
-        HT[i].lchild = 0;
-        HT[i].rchild = 0;
-        HT[i].ch = ' ';
+            HT[i].weight = 0;
+            HT[i].parent = 0;
+            HT[i].lchild = 0;
+            HT[i].rchild = 0;
+            HT[i].ch = ' ';
     }
     printf("\n哈夫曼树的构造过程如下所示\n");
     for (i = n + 1; i <= m; i++)                 //构建哈夫曼树
     {
-
         Select(HT, i - 1, s1, s2);
         HT[s1].parent = (unsigned int) i;
         HT[s2].parent = (unsigned int) i;
